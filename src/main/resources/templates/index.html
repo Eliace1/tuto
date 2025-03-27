@@ -26,6 +26,8 @@
       <!-- Colonne 1 -->
       <div class="col-12 col-sm-6 ps-lg-5 d-flex flex-column Xjustify-content-center">
 
+        <div class="alert text-center bg-secondary-subtle" th:if="${condition}" th:text="${alert}">Mot de passe incorrect</div>
+
         <!-- Titre en haut de la page -->
         <h2 class="text-center">Connexion</h2>
 
@@ -36,7 +38,7 @@
         <div class="mx-auto" style="max-width: 30rem;">
 
           <!-- Formulaire de saisie -->
-          <form class="mb-auto" th:action="@{/bonjour}" method="get">
+          <form class="mb-auto" th:action="@{/connect}" method="get">
 
             <!-- Identifiant -->
             <div class="row my-4">
