@@ -1,11 +1,7 @@
 <!doctype html>
 <html lang="fr">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connexion - Tuto</title>
-  <link rel="stylesheet" href="css/styles.css" />
+<head th:replace="~{_fragments/layout :: head('Connexion')}">
 </head>
 
 <body>
@@ -13,8 +9,10 @@
   <!-- -->
   <!-- En-tête de page - barre de navigation -->
   <!-- -->
-  <header class="sticky-top">
-    <nav class="bg-success" style="height: 3rem;"></nav>
+  <!-- -->
+  <!-- En-tête de page - barre de navigation -->
+  <!-- -->
+  <header class="sticky-top" th:replace="~{_fragments/layout :: header}">
   </header>
 
   <!-- -->
@@ -26,7 +24,8 @@
       <!-- Colonne 1 -->
       <div class="col-12 col-sm-6 ps-lg-5 d-flex flex-column Xjustify-content-center">
 
-        <div class="alert text-center bg-secondary-subtle" th:if="${condition}" th:text="${alert}">Mot de passe incorrect</div>
+        <div class="alert text-center bg-secondary-subtle" th:if="${condition}" th:text="${alert}">Mot de passe
+          incorrect</div>
 
         <!-- Titre en haut de la page -->
         <h2 class="text-center">Connexion</h2>
@@ -82,8 +81,7 @@
   <!-- -->
   <!-- Pied de page -->
   <!-- -->
-  <footer>
-    <div class="bg-dark text-bg-dark pt-2 pb-5 text-center">© La Cantine</div>
+  <footer th:replace="~{_fragments/layout :: footer}">
   </footer>
 
 </body>

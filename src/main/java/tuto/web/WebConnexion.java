@@ -3,8 +3,11 @@ package tuto.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+@SessionAttributes("connected")
 public class WebConnexion {
 	@GetMapping("/bonjour")
 	public String bonjour() {
@@ -21,5 +24,13 @@ public class WebConnexion {
 			model.addAttribute( "condition", "" );
 			return "index";
 		}
+	}
+	@GetMapping("/disconnect")
+	public String disconnect( SessionStatus status, Model model) {
+		status.setComplete();
+		model.addAttribute( "alert","Déconnexion effectuée avec succès" );
+		model.addAttribute( "condition", "" );
+		model.addAttribute( "connected",null );
+		return "index";
 	}
 }
