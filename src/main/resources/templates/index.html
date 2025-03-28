@@ -24,7 +24,7 @@
       <!-- Colonne 1 -->
       <div class="col-12 col-sm-6 ps-lg-5 d-flex flex-column Xjustify-content-center">
 
-        <div class="alert text-center bg-secondary-subtle" th:if="${condition}" th:text="${alert}">Mot de passe
+        <div class="alert text-center bg-secondary-subtle" th:if="${alert}" th:text="${alert}">Mot de passe
           incorrect</div>
 
         <!-- Titre en haut de la page -->
@@ -37,7 +37,7 @@
         <div class="mx-auto" style="max-width: 30rem;">
 
           <!-- Formulaire de saisie -->
-          <form class="mb-auto" th:action="@{/connect}" method="get">
+          <form class="mb-auto" th:action="@{/connect}" method="post">
 
             <!-- Identifiant -->
             <div class="row my-4">
@@ -45,7 +45,7 @@
                 <label for="username" class="form-label">Identifiant</label>
               </div>
               <div class="col">
-                <input type="text" id="username" class="form-control" name="username" required autofocus></input>
+                <input type="text" id="username" th:value="${connected}" class="form-control" name="username" required autofocus></input>
               </div>
             </div>
 
@@ -55,7 +55,7 @@
                 <label for="motDePasse" class="col-form-label">Mot de passe</label>
               </div>
               <div class="col">
-                <input type="password" id="motDePasse" class="form-control" name="password" required></input>
+                <input type="password" id="motDePasse" class="form-control" name="password" th:value="${password}" required></input>
               </div>
             </div>
 

@@ -3,8 +3,10 @@ package tuto.web;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @SessionAttributes("connected")
@@ -13,24 +15,28 @@ public class WebConnexion {
 	public String bonjour() {
 		return "bonjour";
 	}
-	@GetMapping("/connect")
+	@GetMapping("/index")
+	public String index() {
+		return "index";
+	}
+	@PostMapping("/connect")
 	public String connect(String username, String password, Model model) {
 		var sb=new StringBuilder(username);
 		if(sb.reverse().toString().equals( password )) {
 			model.addAttribute( "connected",username );
-			return "bonjour";
+			return "redirect:/bonjour";
 		}else {
 			model.addAttribute( "alert", "Mot de passe incorrect" );
-			model.addAttribute( "condition", "" );
+			model.addAttribute( "connected",username );
+			model.addAttribute( "password",password );
 			return "index";
 		}
 	}
-	@GetMapping("/disconnect")
-	public String disconnect( SessionStatus status, Model model) {
+	@PostMapping("/disconnect")
+	public String disconnect( SessionStatus status, Model model, RedirectAttributes ra) {
 		status.setComplete();
-		model.addAttribute( "alert","Déconnexion effectuée avec succès" );
-		model.addAttribute( "condition", "" );
+		ra.addFlashAttribute( "alert","Déconnexion effectuée avec succès" );
 		model.addAttribute( "connected",null );
-		return "index";
+		return "redirect:/index";
 	}
 }
